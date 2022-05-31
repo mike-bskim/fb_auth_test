@@ -2,6 +2,8 @@
 
 A new Flutter project.
 
+fb_auth_test is sample code for provider(Provider, ChangeNotifierProvider, ChangeNotifierProxyProvider, StateNotifierProvider)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
