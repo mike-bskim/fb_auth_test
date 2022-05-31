@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "786441942283",
+    "project_id": "honge-fb-auth-test",
+    "storage_bucket": "honge-fb-auth-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:786441942283:android:6546249302142772319e0e",
+        "android_client_info": {
+          "package_name": "com.honge.fbauth.fb_auth_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "786441942283-5t1ldbigifg439k3e2aupugor4pkdm97.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuB1lwR7V4Drf3RV__rjR_OaK_gc5VPIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "786441942283-5t1ldbigifg439k3e2aupugor4pkdm97.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
