@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class SigninScreen extends StatefulWidget {
-  const SigninScreen({Key? key}) : super(key: key);
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({Key? key}) : super(key: key);
   static const String routeName = '/signin';
 
   @override
-  State<SigninScreen> createState() => _SigninScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _SigninScreenState extends State<SigninScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
