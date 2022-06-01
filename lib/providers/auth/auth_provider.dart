@@ -22,7 +22,7 @@ class AuthProvider extends ChangeNotifier {
     } else {
       _state = _state.copyWith(authStatus: AuthStatus.unauthenticated);
     }
-    debugPrint('authState: $_state');
+    debugPrint('*** auth_provider >> update >> authState: $_state');
     notifyListeners();
   }
 
