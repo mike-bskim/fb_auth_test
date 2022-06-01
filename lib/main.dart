@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fb_auth_test/providers/auth/auth_provider.dart';
+import 'package:fb_auth_test/providers/signin/signin_provider.dart';
 import 'package:fb_auth_test/repositories/auth_repo.dart';
 import 'package:fb_auth_test/screens/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -44,6 +45,11 @@ class MyApp extends StatelessWidget {
             AuthProvider? authProvider,
           ) =>
               authProvider!..update(userStream),
+        ),
+        ChangeNotifierProvider<SignInProvider>(
+          create: (context) => SignInProvider(
+            authRepo: context.read<AuthRepo>(),
+          ),
         )
       ],
       child: MaterialApp(
