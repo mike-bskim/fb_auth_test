@@ -1,14 +1,13 @@
-import 'package:fb_auth_test/models/custom_error.dart';
-import 'package:fb_auth_test/providers/signin/signin_provider.dart';
-import 'package:fb_auth_test/providers/signin/signin_state.dart';
-import 'package:fb_auth_test/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
-
-// import 'package:flutter/widgets.dart';
 import 'package:validators/validators.dart';
 import 'package:provider/provider.dart';
 
+import '../models/custom_error.dart';
+import '../providers/signin/signin_provider.dart';
+import '../providers/signin/signin_state.dart';
 import '../utils/error_dialog.dart';
+import 'signup_screen.dart';
+// import 'signup_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);

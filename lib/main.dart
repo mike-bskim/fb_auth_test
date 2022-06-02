@@ -1,13 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fb_auth_test/providers/auth/auth_provider.dart';
-import 'package:fb_auth_test/providers/signin/signin_provider.dart';
-import 'package:fb_auth_test/repositories/auth_repo.dart';
-import 'package:fb_auth_test/screens/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
 
+import 'repositories/auth_repo.dart';
+import 'providers/auth/auth_provider.dart';
+import 'providers/signin/signin_provider.dart';
+import 'providers/signup/signup_provider.dart';
+import 'screens/home_screen.dart';
 import 'screens/signin_screen.dart';
 import 'screens/signup_screen.dart';
 import 'screens/splash_screen.dart';
@@ -50,7 +51,12 @@ class MyApp extends StatelessWidget {
           create: (context) => SignInProvider(
             authRepo: context.read<AuthRepo>(),
           ),
-        )
+        ),
+        ChangeNotifierProvider<SignUpProvider>(
+          create: (context) => SignUpProvider(
+            authRepo: context.read<AuthRepo>(),
+          ),
+        ),
       ],
       child: MaterialApp(
         title: 'Auth Provider',
