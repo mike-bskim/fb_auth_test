@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fb_auth_test/providers/profile/profile_provider.dart';
+import 'package:fb_auth_test/repositories/profile_repo.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -34,6 +36,11 @@ class MyApp extends StatelessWidget {
             firebaseAuth: fb_auth.FirebaseAuth.instance,
           ),
         ),
+        Provider<ProfileRepo>(
+          create: (context) => ProfileRepo(
+            firebaseFirestore: FirebaseFirestore.instance,
+          ),
+        ),
         StreamProvider<fb_auth.User?>(
           create: (context) => context.read<AuthRepo>().user,
           initialData: null,
@@ -55,6 +62,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<SignUpProvider>(
           create: (context) => SignUpProvider(
             authRepo: context.read<AuthRepo>(),
+          ),
+        ),
+        ChangeNotifierProvider<ProfileProvider>(
+          create: (context) => ProfileProvider(
+            profileRepo: context.read<ProfileRepo>(),
           ),
         ),
       ],
