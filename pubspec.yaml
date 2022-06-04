@@ -44,7 +44,9 @@ dependencies:
   firebase_core: ^1.17.1
   equatable: ^2.0.3
   provider: ^6.0.3
-  validators: 3.0.0
+  validators: ^3.0.0
+  state_notifier: ^0.7.1
+  flutter_state_notifier: ^0.7.1
 
 dev_dependencies:
   flutter_test:

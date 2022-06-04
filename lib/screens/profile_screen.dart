@@ -21,14 +21,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
     // TODO: implement initState
     super.initState();
     profileProvider = context.read<ProfileProvider>();
-    profileProvider.addListener(errorDialogListener);
+    // profileProvider.addListener(errorDialogListener);
     _getProfile();
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
-    profileProvider.removeListener(errorDialogListener);
+    // profileProvider.removeListener(errorDialogListener);
     super.dispose();
   }
 

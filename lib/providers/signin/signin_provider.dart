@@ -1,35 +1,35 @@
 import 'package:fb_auth_test/models/custom_error.dart';
-import 'package:flutter/foundation.dart';
+// import 'package:flutter/foundation.dart';
+import 'package:state_notifier/state_notifier.dart';
 // import 'package:flutter/material.dart';
 
 import '../../repositories/auth_repo.dart';
 import 'signin_state.dart';
 
-class SignInProvider extends ChangeNotifier {
-  SignInState _state = SignInState.init();
+//authRepo 가 필요하므로 LocatorMixin 추가해야 함.
+class SignInProvider extends StateNotifier<SignInState> with LocatorMixin {
+  // SignInState _state = SignInState.init();
+  // SignInState get state => _state;
 
-  SignInState get state => _state;
+  SignInProvider(super.state);
 
-  final AuthRepo authRepo;
-
-  SignInProvider({
-    required this.authRepo,
-  });
+  // final AuthRepo authRepo;
+  // SignInProvider({required this.authRepo});
 
   Future<void> signIn({
     required String email,
     required String password,
   }) async {
-    _state = _state.copyWith(signInStatus: SignInStatus.submitting);
-    notifyListeners();
+    state = state.copyWith(signInStatus: SignInStatus.submitting);
+    // notifyListeners();
 
     try {
-      await authRepo.signIn(email: email, password: password);
-      _state = _state.copyWith(signInStatus: SignInStatus.success);
-      notifyListeners();
+      await read<AuthRepo>().signIn(email: email, password: password);
+      state = state.copyWith(signInStatus: SignInStatus.success);
+      // notifyListeners();
     } on CustomError catch (e) {
-      _state = _state.copyWith(signInStatus: SignInStatus.error, error: e);
-      notifyListeners();
+      state = state.copyWith(signInStatus: SignInStatus.error, error: e);
+      // notifyListeners();
       rethrow;
     }
   }

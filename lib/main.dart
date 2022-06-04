@@ -1,15 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fb_auth_test/providers/profile/profile_provider.dart';
+
+// import 'package:fb_auth_test/providers/auth/auth_state.dart';
+// import 'package:fb_auth_test/providers/profile/profile_provider.dart';
+import 'package:fb_auth_test/providers/providers.dart';
 import 'package:fb_auth_test/repositories/profile_repo.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
 
 import 'repositories/auth_repo.dart';
-import 'providers/auth/auth_provider.dart';
-import 'providers/signin/signin_provider.dart';
-import 'providers/signup/signup_provider.dart';
+
+// import 'providers/auth/auth_provider.dart';
+// import 'providers/signin/signin_provider.dart';
+// import 'providers/signup/signup_provider.dart';
 import 'screens/home_screen.dart';
 import 'screens/signin_screen.dart';
 import 'screens/signup_screen.dart';
@@ -45,30 +50,42 @@ class MyApp extends StatelessWidget {
           create: (context) => context.read<AuthRepo>().user,
           initialData: null,
         ),
-        ChangeNotifierProxyProvider<fb_auth.User?, AuthProvider>(
-          create: (context) => AuthProvider(authRepo: context.read<AuthRepo>()),
-          update: (
-            context,
-            fb_auth.User? userStream,
-            AuthProvider? authProvider,
-          ) =>
-              authProvider!..update(userStream),
+        StateNotifierProvider<AuthProvider, AuthState>(
+          create: (context) => AuthProvider(AuthState.unknown()),
         ),
-        ChangeNotifierProvider<SignInProvider>(
-          create: (context) => SignInProvider(
-            authRepo: context.read<AuthRepo>(),
-          ),
+        // ChangeNotifierProxyProvider<fb_auth.User?, AuthProvider>(
+        //   create: (context) => AuthProvider(authRepo: context.read<AuthRepo>()),
+        //   update: (
+        //     context,
+        //     fb_auth.User? userStream,
+        //     AuthProvider? authProvider,
+        //   ) =>
+        //       authProvider!..update(userStream),
+        // ),
+        StateNotifierProvider<SignInProvider, SignInState>(
+          create: (context) => SignInProvider(SignInState.init()),
         ),
-        ChangeNotifierProvider<SignUpProvider>(
-          create: (context) => SignUpProvider(
-            authRepo: context.read<AuthRepo>(),
-          ),
+        // ChangeNotifierProvider<SignInProvider>(
+        //   create: (context) => SignInProvider(
+        //     authRepo: context.read<AuthRepo>(),
+        //   ),
+        // ),
+        StateNotifierProvider<SignUpProvider, SignUpState>(
+          create: (context) => SignUpProvider(SignUpState.init()),
         ),
-        ChangeNotifierProvider<ProfileProvider>(
-          create: (context) => ProfileProvider(
-            profileRepo: context.read<ProfileRepo>(),
-          ),
+        // ChangeNotifierProvider<SignUpProvider>(
+        //   create: (context) => SignUpProvider(
+        //     authRepo: context.read<AuthRepo>(),
+        //   ),
+        // ),
+        StateNotifierProvider<ProfileProvider, ProfileState>(
+          create: (context) => ProfileProvider(ProfileState.init()),
         ),
+        // ChangeNotifierProvider<ProfileProvider>(
+        //   create: (context) => ProfileProvider(
+        //     profileRepo: context.read<ProfileRepo>(),
+        //   ),
+        // ),
       ],
       child: MaterialApp(
         title: 'Auth Provider',
