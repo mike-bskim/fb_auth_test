@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:validators/validators.dart';
 import 'package:provider/provider.dart';
-import 'package:state_notifier/state_notifier.dart';
+// import 'package:state_notifier/state_notifier.dart';
 
 import '../models/custom_error.dart';
 import '../providers/signin/signin_provider.dart';
@@ -48,7 +48,8 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final signInState = context.watch<SignInProvider>().state;
+    // final signInState = context.watch<SignInProvider>().state;
+    final signInState = context.watch<SignInState>();
 
     return WillPopScope(
       // splash screen 으로 돌아가지 못하게 처리.

@@ -15,13 +15,15 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   late final ProfileProvider profileProvider;
+  late final void Function() _removeListener;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     profileProvider = context.read<ProfileProvider>();
-    // profileProvider.addListener(errorDialogListener);
+    _removeListener = profileProvider.addListener(errorDialogListener,
+        fireImmediately: false);
     _getProfile();
   }
 
@@ -29,12 +31,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void dispose() {
     // TODO: implement dispose
     // profileProvider.removeListener(errorDialogListener);
+    _removeListener();
     super.dispose();
   }
 
-  void errorDialogListener() {
-    if (profileProvider.state.profileStatus == ProfileStatus.error) {
-      errorDialog(context, profileProvider.state.error);
+  void errorDialogListener(ProfileState state) {
+    if (state.profileStatus == ProfileStatus.error) {
+      // errorDialog(context, profileProvider.state.error);
+      errorDialog(context, state.error);
     }
   }
 
@@ -46,7 +50,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget _buildProfile() {
-    final profileState = context.watch<ProfileProvider>().state;
+    // final profileState = context.watch<ProfileProvider>().state;
+    final profileState = context.watch<ProfileState>();
     if (profileState.profileStatus == ProfileStatus.initial) {
       return Container();
     } else if (profileState.profileStatus == ProfileStatus.loading) {
